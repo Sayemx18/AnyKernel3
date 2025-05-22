@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string= Wellcome to NightQueen kernel
+kernel.string= Wellcome to..
 do.devicecheck=1
 do.modules=0
 do.systemless=1
