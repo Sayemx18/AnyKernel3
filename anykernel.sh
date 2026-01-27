@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string= Wellcome to..
+kernel.string=
 do.devicecheck=1
 do.modules=0
 do.systemless=1
@@ -33,6 +33,24 @@ ramdisk_compression=auto;
 # set permissions/ownership for included ramdisk files
 set_perm_recursive 0 0 750 750 $ramdisk/*;
 
+# kernel naming scene
+ui_print " ";
+
+case "$ZIPFILE" in
+  *5k*|*5K*)
+    ui_print "5kmah Battery  Detected,";
+    ui_print "Using 5kmah DTBO... ";
+    mv *-5k-dtbo.img $home/dtbo.img;
+    rm *-dtbo.img;
+  ;;
+  *)
+    ui_print "Stock Battery Detected!!!";
+    ui_print "Using Stock DTBO... ";
+    mv *-dtbo.img $home/dtbo.img;
+    rm *-5k-dtbo.img;
+  ;;
+esac
+ui_print " ";
 
 ## AnyKernel install
 dump_boot;
