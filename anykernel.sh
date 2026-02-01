@@ -37,18 +37,35 @@ set_perm_recursive 0 0 750 750 $ramdisk/*;
 ui_print " ";
 
 case "$ZIPFILE" in
+
+  *miui5k*|*MIUI5K*)
+    ui_print "MIUI 5kmah detected"
+    ui_print "Using MIUI 5kmah DTBO..."
+    mv miui-5k-dtbo.img $home/dtbo.img
+    rm -f miui-dtbo.img stock-dtbo.img 5k-dtbo.img
+  ;;
+
+  *miui*|*MIUI*)
+    ui_print "MIUI  detected"
+    ui_print "Using MIUI Stock DTBO..."
+    mv miui-dtbo.img $home/dtbo.img
+    rm -f miui-5k-dtbo.img stock-dtbo.img 5k-dtbo.img
+  ;;
+
   *5k*|*5K*)
-    ui_print "5kmah Battery  Detected,";
-    ui_print "Using 5kmah DTBO... ";
-    mv *-5k-dtbo.img $home/dtbo.img;
-    rm *-dtbo.img;
+    ui_print "AOSP 5kmah detected"
+    ui_print "Using AOSP 5kmah DTBO..."
+    mv 5k-dtbo.img $home/dtbo.img
+    rm -f stock-dtbo.img miui*.img
   ;;
+
   *)
-    ui_print "Stock Battery Detected!!!";
-    ui_print "Using Stock DTBO... ";
-    mv *-dtbo.img $home/dtbo.img;
-    rm *-5k-dtbo.img;
+    ui_print "AOSP stock  detected"
+    ui_print "Using AOSP Stock DTBO..."
+    mv stock-dtbo.img $home/dtbo.img
+    rm -f 5k-dtbo.img miui*.img
   ;;
+
 esac
 ui_print " ";
 
